@@ -2,6 +2,7 @@ package com.example.emtlab2.service.impl;
 
 import com.example.emtlab2.model.Author;
 import com.example.emtlab2.model.Country;
+import com.example.emtlab2.model.exceptions.NoAuthorIdFoundException;
 import com.example.emtlab2.repository.AuthorRepository;
 import com.example.emtlab2.repository.CountryRepository;
 import com.example.emtlab2.service.AuthorService;
@@ -20,7 +21,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void create(String name, String surname, Long countryId) {
-        Country country = this.countryRepository.findById(countryId).orElseThrow();
+        Country country = this.countryRepository.findById(countryId).orElseThrow(NoAuthorIdFoundException::new);
         Author author = new Author(name,surname,country);
         this.authorRepository.save(author);
     }

@@ -24,7 +24,6 @@ public class DataHolder {
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
-
     private final CountryRepository countryRepository;
 
     public DataHolder(BookRepository bookRepository, AuthorRepository authorRepository, CountryRepository countryRepository) {

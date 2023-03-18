@@ -1,6 +1,5 @@
 package com.example.emtlab2.service;
 
-import com.example.emtlab2.model.Country;
 
 public interface AuthorService {
 

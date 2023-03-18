@@ -2,10 +2,12 @@ package com.example.emtlab2.model;
 
 
 import com.example.emtlab2.model.enumerations.Category;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 public class Book {
 
     @Id
