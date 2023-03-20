@@ -14,6 +14,8 @@ public interface BookService {
 
     void edit(Long bookId,String name, Category category, Long authorId, Integer availableCopies);
 
+    void markAsTaken(Long bookId);
+
     Optional<Book> findById(Long bookId);
 
     List<Book> findAll();

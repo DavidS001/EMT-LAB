@@ -1,7 +1,9 @@
 package com.example.emtlab2.web;
 
 import com.example.emtlab2.dataholder.DataHolder;
+
 import com.example.emtlab2.model.Book;
+import com.example.emtlab2.model.enumerations.Category;
 import com.example.emtlab2.service.AuthorService;
 import com.example.emtlab2.service.BookService;
 import com.example.emtlab2.service.CountryService;
@@ -31,10 +33,40 @@ public class HomeController {
         return this.bookService.findAll();
     }
 
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Book> deleteById(@PathVariable Long id) {
         this.bookService.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<Book> editBook(@PathVariable Long id,
+                                         @RequestParam String name,
+                                         @RequestParam Long authorId,
+                                         @RequestParam String category,
+                                         @RequestParam Integer availableCopies){
+        Category cat = Category.valueOf(category);
+        this.bookService.edit(id,name,cat,authorId,availableCopies);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/markAsTaken/{id}")
+    public ResponseEntity<Book> markAsTaken(@PathVariable Long id){
+        this.bookService.markAsTaken(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Book> addNewBook(@RequestParam String name,
+                                           @RequestParam String category,
+                                           @RequestParam Long authorId,
+                                           @RequestParam Integer availableCopies){
+        Category cat = Category.valueOf(category);
+        this.bookService.create(name,cat,authorId,availableCopies);
+
+        return ResponseEntity.ok().build();
+
     }
 
 }

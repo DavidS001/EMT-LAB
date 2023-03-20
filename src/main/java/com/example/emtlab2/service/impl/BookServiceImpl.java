@@ -5,6 +5,7 @@ import com.example.emtlab2.model.Book;
 import com.example.emtlab2.model.enumerations.Category;
 import com.example.emtlab2.model.exceptions.NoAuthorIdFoundException;
 import com.example.emtlab2.model.exceptions.NoBookIdFoundException;
+import com.example.emtlab2.model.exceptions.NoCopiesLeftException;
 import com.example.emtlab2.repository.AuthorRepository;
 import com.example.emtlab2.repository.BookRepository;
 import com.example.emtlab2.service.BookService;
@@ -38,7 +39,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void edit(Long bookId,String name, Category category, Long authorId, Integer availableCopies) {
+    public void edit(Long bookId,String name,Category category,Long authorId, Integer availableCopies) {
         Book book = this.bookRepository.findById(bookId).orElseThrow(NoBookIdFoundException::new);
         Author author = this.authorRepository.findById(authorId).orElseThrow(NoAuthorIdFoundException::new);
 
@@ -46,6 +47,19 @@ public class BookServiceImpl implements BookService {
         book.setAuthor(author);
         book.setCategory(category);
         book.setAvailableCopies(availableCopies);
+
+        this.bookRepository.save(book);
+    }
+
+    @Override
+    public void markAsTaken(Long bookId) {
+        Book book = this.bookRepository.findById(bookId).orElseThrow(NoBookIdFoundException::new);
+
+        if(book.getAvailableCopies()>0){
+            book.setAvailableCopies(book.getAvailableCopies()-1);
+        }else{
+            throw new NoCopiesLeftException();
+        }
 
         this.bookRepository.save(book);
     }

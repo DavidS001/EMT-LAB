@@ -8,6 +8,8 @@ import com.example.emtlab2.repository.CountryRepository;
 import com.example.emtlab2.service.AuthorService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
@@ -25,4 +27,15 @@ public class AuthorServiceImpl implements AuthorService {
         Author author = new Author(name,surname,country);
         this.authorRepository.save(author);
     }
+
+    @Override
+    public Optional<Author> findByNameAndSurname(String name, String surname) {
+        return this.authorRepository.findByNameIgnoreCaseAndSurnameIgnoreCase(name,surname);
+    }
+
+    @Override
+    public Optional<Author> findById(Long id) {
+        return this.authorRepository.findById(id);
+    }
+
 }
