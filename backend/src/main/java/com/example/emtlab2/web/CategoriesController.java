@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/api/categories")
 public class CategoriesController {
     @GetMapping
     public List<Category> allCategories(){
