@@ -3,6 +3,7 @@ package com.example.emtlab2.service;
 
 import com.example.emtlab2.model.Author;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface AuthorService {
@@ -12,4 +13,6 @@ public interface AuthorService {
     Optional<Author> findByNameAndSurname(String name, String surname);
 
     Optional<Author> findById(Long id);
+
+    List<Author> findAllAuthors();
 }

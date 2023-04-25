@@ -15,7 +15,7 @@ const categories = (props) => {
                         {props.categories.map((term)=>{
                             return (
                                 <tr>
-                                    <td>{term.category}</td>
+                                    <td>{term.toString()}</td>
                                 </tr>
                             );
                         })}

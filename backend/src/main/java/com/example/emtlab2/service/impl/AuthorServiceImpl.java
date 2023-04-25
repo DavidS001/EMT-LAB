@@ -8,6 +8,7 @@ import com.example.emtlab2.repository.CountryRepository;
 import com.example.emtlab2.service.AuthorService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +37,11 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public Optional<Author> findById(Long id) {
         return this.authorRepository.findById(id);
+    }
+
+    @Override
+    public List<Author> findAllAuthors() {
+        return this.authorRepository.findAll();
     }
 
 }

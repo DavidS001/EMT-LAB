@@ -48,7 +48,7 @@ public class HomeController {
                                          @RequestParam String category,
                                          @RequestParam Integer availableCopies){
         Category cat = Category.valueOf(category);
-        this.bookService.edit(id,name,cat,authorId,availableCopies);
+        this.bookService.edit(id, name,cat,authorId,availableCopies);
         return ResponseEntity.ok().build();
     }
 
