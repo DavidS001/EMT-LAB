@@ -27,7 +27,7 @@ class App extends Component {
             <BrowserRouter>
                 <Header/>
                 <Routes>
-                    <Route path={"/books"} element={<Books books={this.state.books} onDelete={this.deleteBook} onEdit={this.editBook}/>}/>
+                    <Route path={"/books"} element={<Books books={this.state.books} onDelete={this.deleteBook} onEdit={this.editBook} onMarkAsTaken={this.markAsTaken}/>}/>
                     <Route path={"/categories"} element={<Categories categories={this.state.categories}/>}/>
                     <Route path={"/add"} element={<BookAdd authors={this.state.authors} categories={this.state.categories} onAddBook={this.addBook}/>}></Route>
                     <Route path={"/edit/:id"} element={
@@ -81,6 +81,13 @@ class App extends Component {
 
     editBook = (id,name,category,authorId,availableCopies) => {
         bookService.editBook(id,name,category,authorId,availableCopies)
+            .then(()=>{
+                this.loadBooks();
+            })
+    }
+
+    markAsTaken = (id) => {
+        bookService.markAsTaken(id)
             .then(()=>{
                 this.loadBooks();
             })

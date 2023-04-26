@@ -62,9 +62,9 @@ const BookEdit = (props) => {
                         <select name="category" className="form-control" onChange={handleChange}>
                             {props.categories.map((term) => {
                                     if(props.book.category !== undefined){
-                                        return <option value={term.valueOf(term.toString())}>{term.toString()}</option>
+                                        return <option value={term}>{term.toString()}</option>
                                     }
-                                    else return <option value={term.valueOf(term.toString())}>{term.toString()}</option>
+                                    else return <option value={term}>{term.toString()}</option>
                                 }
                             )}
                         </select>

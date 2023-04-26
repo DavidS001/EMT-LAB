@@ -15,6 +15,7 @@ const books = (props) => {
                                 <th scope={"col"}>Category</th>
                                 <th scope={"col"}>Delete</th>
                                 <th scope={"col"}>Edit</th>
+                                <th scope={"col"}>Mark as taken</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,9 +29,12 @@ const books = (props) => {
                                     <td><a title={"Delete"} className={"btn btn-danger"}
                                     onClick={() => {props.onDelete(term.id)}}
                                     >Delete</a></td>
-                                    <td><Link title={"Delete"} className={"btn btn-primary"}
+                                    <td><Link title={"Edit"} className={"btn btn-primary"}
                                            onClick={() => {props.onEdit(term.id)}} to={`/edit/${term.id}`}
                                     >Edit</Link></td>
+                                    <td><a title={"MarkAsTaken"} className={"btn btn-secondary"}
+                                           onClick={() => {props.onMarkAsTaken(term.id)}}
+                                    >Mark as taken</a></td>
                                 </tr>
                             );
                         })}
